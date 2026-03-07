@@ -1,0 +1,222 @@
+/* ============================================================
+   MILORD REALTY — styles.css
+   Hoja de estilos principal del sitio web de bienes raíces
+   
+   ÍNDICE DE SECCIONES:
+   1.  Variables globales (colores y fuentes)
+   2.  Reset y estilos base
+   3.  Barra de navegación
+   4.  Sección Hero (portada)
+   5.  Marquesina / Ticker animado
+   6.  Estilos generales de secciones
+   7.  Cuadrícula de propiedades y tarjetas
+   8.  Ventanas modales de detalle
+   9.  Sección "Por qué Panamá"
+   10. Servicios
+   11. Testimonios
+   12. Banner CTA
+   13. Contacto
+   14. Pie de página
+   15. Animaciones
+   16. Diseño responsivo (móvil)
+   ============================================================ */
+
+/* ── 1. VARIABLES GLOBALES ──────────────────────────────────
+   Define los colores dorados, oscuros y las fuentes
+   que se usan en todo el sitio web ── */
+
+:root{--g:#C9A96E;--gl:#E8D5B0;--gd:#8B6D3F;--bk:#0A0A0A;--ch:#141414;--dk:#1C1C1C;--md:#2A2A2A;--mt:#5A5A5A;--ser:'Cormorant Garamond',serif;--san:'Montserrat',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bk);color:#FDFCFA;font-family:var(--san);font-weight:300;overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-thumb{background:var(--g);}
+
+/* ── 3. BARRA DE NAVEGACIÓN FIJA ─────────────────────────── */
+nav{position:fixed;top:0;left:0;width:100%;z-index:200;padding:20px 48px;display:flex;align-items:center;justify-content:space-between;transition:background .3s;}
+nav.scrolled{background:rgba(10,10,10,.97);border-bottom:1px solid rgba(201,169,110,.15);}
+.logo-name{font-family:var(--ser);font-size:22px;font-weight:600;color:var(--g);letter-spacing:.05em;}
+.logo-sub{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--mt);}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);text-decoration:none;transition:color .25s;}
+.nav-links a:hover{color:var(--g);}
+.nav-cta{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--g);border:1px solid var(--g);padding:9px 22px;text-decoration:none;transition:all .25s;}
+.nav-cta:hover{background:var(--g);color:var(--bk);}
+
+/* ── 4. SECCIÓN HERO: portada a pantalla completa ──────────── */
+.hero{height:100vh;min-height:600px;position:relative;display:flex;align-items:flex-end;padding:0 48px 72px;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,10,10,.88),rgba(10,10,10,.3) 55%,rgba(10,10,10,.7)),url('https://images.unsplash.com/photo-1568801818463-96e7b52b04b7?w=1600&q=70') center/cover no-repeat;}
+.hero-content{position:relative;z-index:2;max-width:640px;}
+.hero-tag{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--g);display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.hero-tag::before{content:'';width:36px;height:1px;background:var(--g);}
+h1{font-family:var(--ser);font-size:clamp(46px,6.5vw,80px);font-weight:300;line-height:1;margin-bottom:24px;}
+h1 em{color:var(--g);font-style:italic;}
+.hero p{font-size:13px;line-height:1.9;color:rgba(255,255,255,.5);max-width:400px;margin-bottom:40px;}
+.btn-gold{background:var(--g);color:var(--bk);font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:14px 32px;text-decoration:none;font-weight:500;display:inline-block;transition:all .25s;border:none;cursor:pointer;font-family:var(--san);}
+.btn-gold:hover{background:var(--gl);}
+.btn-ghost{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);text-decoration:none;margin-left:20px;transition:color .25s;}
+.btn-ghost:hover{color:var(--g);}
+.hero-stats{position:absolute;right:48px;bottom:72px;z-index:2;display:flex;gap:44px;}
+.sn{font-family:var(--ser);font-size:34px;color:var(--g);display:block;line-height:1;}
+.sl{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--mt);margin-top:5px;display:block;}
+
+/* ── 5. MARQUESINA: banda dorada con texto animado ─────────── */
+.ticker{background:var(--g);overflow:hidden;padding:12px 0;}
+.tick-inner{display:flex;gap:64px;white-space:nowrap;animation:tick 40s linear infinite;}
+.tick-inner span{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--bk);}
+.tick-inner span::after{content:' ◆ ';}
+@keyframes tick{to{transform:translateX(-50%);}}
+
+/* ── 6. ESTILOS GENERALES DE SECCIONES ──────────────────────── */
+section{padding:96px 48px;}
+.s-label{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--g);display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+.s-label::before{content:'';width:28px;height:1px;background:var(--g);}
+.s-title{font-family:var(--ser);font-size:clamp(32px,4vw,50px);font-weight:300;line-height:1.1;margin-bottom:14px;}
+.s-title em{color:var(--g);font-style:italic;}
+.s-sub{font-size:13px;line-height:1.8;color:var(--mt);max-width:480px;}
+
+/* ── 7. CUADRÍCULA DE PROPIEDADES Y TARJETAS ────────────────── */
+.props{background:var(--ch);}
+.ph{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;}
+.view-all{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--g);text-decoration:none;border-bottom:1px solid var(--gd);padding-bottom:3px;}
+.grid{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:12px;}
+.card{position:relative;overflow:hidden;cursor:pointer;background:var(--md);height:340px;}
+.card.tall{height:100%;grid-row:span 2;}
+.card img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease;display:block;}
+.card:hover img{transform:scale(1.05);}
+.ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.87) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:22px;}
+.badge{position:absolute;top:14px;left:14px;background:var(--g);color:var(--bk);font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:4px 10px;font-weight:500;}
+.ct{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--g);margin-bottom:5px;}
+.cn{font-family:var(--ser);font-size:20px;font-weight:300;margin-bottom:4px;}
+.card.tall .cn{font-size:26px;}
+.cl{font-size:11px;color:rgba(255,255,255,.45);margin-bottom:8px;}
+.cp{font-family:var(--ser);font-size:18px;color:var(--g);}
+.card.tall .cp{font-size:24px;}
+.cd{display:flex;gap:10px;margin-top:6px;font-size:10px;color:rgba(255,255,255,.38);flex-wrap:wrap;}
+.dbtn{margin-top:10px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--g);border:1px solid var(--gd);padding:6px 14px;background:transparent;cursor:pointer;transition:all .25s;display:inline-block;}
+.dbtn:hover{background:var(--g);color:var(--bk);border-color:var(--g);}
+
+/* ── 8. VENTANAS MODALES: detalle de cada propiedad ──────────── */
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:500;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:32px 16px;}
+.mo.open{display:flex;}
+.mw{background:var(--ch);max-width:1020px;width:100%;position:relative;}
+.mc{position:absolute;top:14px;right:16px;background:rgba(0,0,0,.55);border:none;color:var(--g);font-size:26px;cursor:pointer;z-index:10;width:38px;height:38px;display:flex;align-items:center;justify-content:center;line-height:1;}
+.mhero{height:360px;overflow:hidden;position:relative;}
+.mhero img{width:100%;height:100%;object-fit:cover;display:block;}
+.mhero-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.85),transparent 50%);}
+.mhero-title{position:absolute;bottom:28px;left:32px;}
+.mhero-title h2{font-family:var(--ser);font-size:34px;font-weight:300;}
+.mhero-title h2 em{color:var(--g);font-style:italic;}
+.mhero-title p{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--g);margin-top:5px;}
+.mb{padding:32px;}
+.ms{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px;}
+.mv{font-family:var(--ser);font-size:19px;color:var(--g);display:block;margin-bottom:3px;}
+.mk{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mt);}
+.mstat{padding:14px;background:var(--dk);border-top:2px solid var(--g);}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:36px;}
+.mst{font-family:var(--ser);font-size:19px;font-weight:400;margin-bottom:10px;color:var(--gl);}
+.mt{font-size:13px;line-height:1.85;color:rgba(255,255,255,.65);margin-bottom:14px;}
+.ml{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.ml li{font-size:13px;color:rgba(255,255,255,.6);padding-left:14px;position:relative;line-height:1.6;}
+.ml li::before{content:'◆';position:absolute;left:0;font-size:6px;color:var(--g);top:5px;}
+.mgal{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:22px;}
+.mgal img{width:100%;height:170px;object-fit:cover;display:block;transition:transform .3s;cursor:pointer;}
+.mgal img:hover{transform:scale(1.02);}
+.mgal .w2{grid-column:span 2;}
+.roi-t{width:100%;border-collapse:collapse;margin:14px 0;}
+.roi-t th{background:var(--dk);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--g);padding:9px 12px;text-align:left;}
+.roi-t td{padding:8px 12px;font-size:12px;color:rgba(255,255,255,.65);border-bottom:1px solid var(--md);}
+.roi-t tr:last-child td{color:var(--g);border-bottom:none;font-weight:500;}
+.mcta{margin-top:28px;padding:26px 28px;background:var(--dk);border-top:2px solid var(--g);display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.mcta p{font-family:var(--ser);font-size:18px;font-weight:300;}
+.mcta p em{color:var(--g);font-style:italic;}
+.vid-wrap{margin-top:20px;background:var(--dk);padding:6px;}
+.vid-wrap video{width:100%;max-height:380px;display:block;background:#000;}
+
+/* ── 9. SECCIÓN "POR QUÉ INVERTIR EN PANAMÁ" ───────────────── */
+.why{background:var(--bk);}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:60px;}
+.why-grid img{width:100%;height:440px;object-fit:cover;display:block;}
+.feats{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:36px;}
+.feat{padding-top:16px;border-top:1px solid rgba(201,169,110,.2);}
+.feat span{font-size:18px;display:block;margin-bottom:8px;}
+.feat h4{font-family:var(--ser);font-size:16px;font-weight:400;margin-bottom:6px;}
+.feat p{font-size:12px;line-height:1.8;color:var(--mt);}
+
+/* ── 10. SECCIÓN DE SERVICIOS OFRECIDOS ─────────────────────── */
+.serv{background:var(--ch);}
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--md);margin-top:48px;}
+.si{background:var(--ch);padding:36px 30px;transition:background .25s;}
+.si:hover{background:var(--dk);}
+.sn2{font-family:var(--ser);font-size:40px;color:var(--gd);opacity:.35;display:block;margin-bottom:12px;line-height:1;}
+.si h3{font-family:var(--ser);font-size:18px;font-weight:400;margin-bottom:9px;}
+.si p{font-size:13px;line-height:1.8;color:var(--mt);}
+
+/* ── 11. TESTIMONIOS DE CLIENTES ───────────────────────────── */
+.test{background:var(--bk);}
+.tg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;}
+.tc{background:var(--ch);padding:28px;border-top:2px solid var(--g);}
+.tq{font-family:var(--ser);font-size:46px;line-height:.5;color:var(--gd);margin-bottom:14px;display:block;}
+.tc p{font-family:var(--ser);font-size:15px;line-height:1.75;font-style:italic;color:rgba(255,255,255,.75);margin-bottom:18px;}
+.ta{display:flex;align-items:center;gap:10px;}
+.ta img{width:36px;height:36px;border-radius:50%;object-fit:cover;border:1px solid var(--gd);}
+.tn{font-size:12px;font-weight:500;margin-bottom:2px;}
+.tr{font-size:10px;letter-spacing:.13em;color:var(--g);text-transform:uppercase;}
+
+/* ── 12. BANNER DE LLAMADA A LA ACCIÓN (CTA) ────────────────── */
+.cta-b{background:var(--g);padding:60px 48px;display:flex;align-items:center;justify-content:space-between;gap:32px;}
+.cta-b h2{font-family:var(--ser);font-size:clamp(24px,3vw,40px);font-weight:300;color:var(--bk);flex:1;}
+.cta-b h2 em{font-style:italic;}
+.cta-btns{display:flex;gap:12px;}
+.btn-dark{background:var(--bk);color:var(--g);font-size:10px;letter-spacing:.16em;text-transform:uppercase;padding:13px 28px;text-decoration:none;font-weight:500;transition:background .25s;}
+.btn-dark:hover{background:var(--ch);}
+.btn-ob{border:1px solid var(--bk);color:var(--bk);font-size:10px;letter-spacing:.16em;text-transform:uppercase;padding:13px 28px;text-decoration:none;transition:background .25s;}
+.btn-ob:hover{background:rgba(0,0,0,.1);}
+
+/* ── 13. FORMULARIO Y DATOS DE CONTACTO ─────────────────────── */
+.contact{background:var(--bk);}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:48px;}
+.ci h3{font-family:var(--ser);font-size:24px;font-weight:300;margin-bottom:14px;}
+.ci p{font-size:13px;line-height:1.85;color:var(--mt);margin-bottom:28px;}
+.cd2{display:flex;flex-direction:column;gap:16px;}
+.citem{display:flex;gap:12px;align-items:flex-start;}
+.cicon{width:36px;height:36px;border:1px solid var(--gd);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.citem-t span:first-child{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--g);display:block;margin-bottom:2px;}
+.citem-t span:last-child{font-size:13px;color:rgba(255,255,255,.65);}
+.cf{display:flex;flex-direction:column;gap:14px;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.fg{display:flex;flex-direction:column;gap:6px;}
+.fg label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mt);}
+.fg input,.fg select,.fg textarea{background:var(--ch);border:1px solid var(--md);color:#FDFCFA;padding:11px 13px;font-family:var(--san);font-size:13px;font-weight:300;outline:none;transition:border-color .25s;width:100%;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--g);}
+.fg textarea{height:96px;resize:none;}
+.fg select option{background:var(--dk);}
+
+/* ── 14. PIE DE PÁGINA ──────────────────────────────────────── */
+footer{background:var(--ch);border-top:1px solid var(--md);}
+.fm{padding:56px 48px 44px;display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;gap:44px;}
+.fb p{font-size:12px;line-height:1.85;color:var(--mt);max-width:260px;margin:10px 0 18px;}
+.soc{display:flex;gap:8px;}
+.soc a{width:32px;height:32px;border:1px solid var(--md);display:flex;align-items:center;justify-content:center;font-size:11px;text-decoration:none;color:var(--mt);transition:all .25s;}
+.soc a:hover{border-color:var(--g);color:var(--g);}
+.fc h5{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--g);margin-bottom:14px;}
+.fc ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.fc ul li a{font-size:12px;color:var(--mt);text-decoration:none;transition:color .25s;}
+.fc ul li a:hover{color:#FDFCFA;}
+.fbot{padding:18px 48px;border-top:1px solid var(--md);display:flex;justify-content:space-between;align-items:center;}
+.fbot p{font-size:11px;color:var(--mt);}
+.fbot a{color:var(--g);text-decoration:none;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+.rev{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.rev.vis{opacity:1;transform:none;}
+
+@media(max-width:900px){
+  nav{padding:14px 18px;} .nav-links{display:none;}
+  section{padding:56px 18px;} .hero{padding:0 18px 48px;} .hero-stats{display:none;}
+  .grid,.why-grid,.cg,.fm,.mgrid,.tg,.sg{grid-template-columns:1fr;}
+  .card.tall{height:280px;} .card{height:260px;}
+  .ms{grid-template-columns:1fr 1fr;} .mgal{grid-template-columns:1fr 1fr;}
+  .mgal .w2{grid-column:span 1;}
+  .cta-b{flex-direction:column;text-align:center;}
+  .frow{grid-template-columns:1fr;}
+}
